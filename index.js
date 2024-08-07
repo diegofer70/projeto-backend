@@ -3,7 +3,7 @@ var cors = require('cors')
 // DESESTRUTURACAO
 const { Sequelize, DataTypes, QueryTypes } = require('sequelize');
 const app = express()
-const port = 9999
+const port = 3000
 
 const sequelize = new Sequelize('postgres', 'postgres.yhogvuqcegpuxhumgkyn', '', {
     host: "aws-0-us-west-1.pooler.supabase.com",
@@ -36,5 +36,5 @@ app.post('/v1/user/:name', (request, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Exemplo de aplicativo escutando na porta ${port}`)
 })
