@@ -1,12 +1,15 @@
 const express = require('express')
-var cors = require('cors')
+const cors = require('cors')    
 // DESESTRUTURACAO
 const { Sequelize, DataTypes, QueryTypes } = require('sequelize');
 const { database } = require('pg/lib/defaults');
 const app = express()
 const port = 3000
 
-const sequelize = new Sequelize('postgresql://postgres.udontlftvjxyhqwnrxji:' + 'projeto-backend' + 'aws-0-us-west-1.pooler.supabase.com:6543/postgres');
+
+
+const sequelize = new Sequelize('postgresql://postgres.hspsjnkdtvcaiuxplsov:chuchu-diego-araujo@aws-0-us-west-1.pooler.supabase.com:6543/postgres');
+  // temos 3 formas de conectar o banco, vamos tentar outra forma 
 
 const User = sequelize.define(
     'User',
@@ -57,7 +60,13 @@ const Category = sequelize.define(
     },
 );
 
-sequelize.sync();
+sequelize.sync({alter: true})
+.then (() => {
+    console.log('Connection has been established successfully.');
+})  
+   .catch (error => {
+  console.error('Unable to connect to the database:', error);
+});
 
 app.use(cors())
 
@@ -94,3 +103,4 @@ app.post('/v1/user', (request, res) => {
 app.listen(port, () => {
     console.log(`Exemplo de aplicativo escutando na porta ${port}`)
 })
+
