@@ -10,10 +10,10 @@ app.get('/', (req, res) => {
     res.send('GET /, AGORA É TUDO NOSSO')
 })
 
-app.post('/chuchu',  (req, res) => {
-    res.send('POST /chuchu, AGORA É TUDO NOSSO')
+app.post('/teste',  (req, res) => {
+    res.send('POST /teste, AGORA É TUDO NOSSO')
 })
 
 app.listen(3000, () => {
-    console.log('CHUCHU SUBIU')
+    console.log('TESTE SUBIU')
 })
