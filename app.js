@@ -6,7 +6,7 @@ const app = require('express')()
 // PUT - crUd = UPDATE
 // PATCH - crUd = UPDATE
 // DELETE - cruD = DELETE
-app.get('/', (req, res) => {
+app.get('/teste2', (req, res) => {
     res.send('GET /, AGORA É TUDO NOSSO')
 })
 

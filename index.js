@@ -8,7 +8,7 @@ const port = 3000
 const sequelize = new Sequelize('postgres', 'postgres.yhogvuqcegpuxhumgkyn', '', {
     host: "aws-0-us-west-1.pooler.supabase.com",
     dialect: 'postgres',
-    port: 6543,
+    port: 5432,
     logging: true, // Desative o log de SQL se não precisar
 });
 app.use(cors())
