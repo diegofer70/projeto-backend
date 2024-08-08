@@ -2,14 +2,12 @@ const express = require('express')
 const cors = require('cors')    
 // DESESTRUTURACAO
 const { Sequelize, DataTypes, QueryTypes } = require('sequelize');
-const { database } = require('pg/lib/defaults');
+const { database, user } = require('pg/lib/defaults');
 const app = express()
 const port = 3000
 
-
-
 const sequelize = new Sequelize('postgresql://postgres.hspsjnkdtvcaiuxplsov:chuchu-diego-araujo@aws-0-us-west-1.pooler.supabase.com:6543/postgres');
-  // temos 3 formas de conectar o banco, vamos tentar outra forma 
+// temos 3 formas de conectar o banco, vamos tentar outra forma 
 
 const User = sequelize.define(
     'User',
@@ -68,10 +66,11 @@ sequelize.sync({alter: true})
   console.error('Unable to connect to the database:', error);
 });
 
-app.use(cors())
+// app.use(bodyParser.json()) // middleware
+app.use(cors()) // middleware
 
 app.get('/', (req, res) => {
-    res.send('Clicar produtos')
+    res.send('Olá, mundo!')
 })
 // /v1/user/nome METODOS HTTP
 
@@ -79,9 +78,8 @@ app.get('/v1/user/:id', (request, res) => {
     console.log('request.url', request.url) // debug
     console.log('request.params.id', request.params.id)
 
-    sequelize.query('SELECT * FROM users where id="' + request.params.id + '"', {
-        type: QueryTypes.SELECT,
-    }).then((result) => res.send(result));
+    User.findOne({ where: { id: request.params.id }})
+    .then((result) => res.send(result));
 })
 // app.post('/v1/user/:name', (request, res) => {
 //     console.log('request.url', request.url) // debug
