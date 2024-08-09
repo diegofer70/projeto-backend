@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 // DESESTRUTURACAO
 const { Sequelize, DataTypes, QueryTypes } = require('sequelize');
 const app = express()
-const port = 3000
+const port = 10000
 
 const sequelize = new Sequelize('postgresql://postgres.hspsjnkdtvcaiuxplsov:chuchu-diego-araujo@aws-0-us-west-1.pooler.supabase.com:6543/postgres');
 // temos 3 formas de conectar o banco, vamos tentar outra forma 
