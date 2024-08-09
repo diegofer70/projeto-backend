@@ -1,8 +1,8 @@
 const express = require('express')
-const cors = require('cors')    
+const cors = require('cors')
+const bodyParser = require('body-parser')    
 // DESESTRUTURACAO
 const { Sequelize, DataTypes, QueryTypes } = require('sequelize');
-const { database, user } = require('pg/lib/defaults');
 const app = express()
 const port = 3000
 
@@ -66,7 +66,7 @@ sequelize.sync({alter: true})
   console.error('Unable to connect to the database:', error);
 });
 
-// app.use(bodyParser.json()) // middleware
+app.use(bodyParser.json()) // middleware
 app.use(cors()) // middleware
 
 app.get('/', (req, res) => {
@@ -96,6 +96,17 @@ app.post('/v1/user', (request, res) => {
     // res.send(request.body)
     User.create(request.body).then((result) => res.status(201).send(result))
 
+})
+
+app.put('/v1/user/:id', (request, res) => {
+    console.log('request.url', request.url) // debug
+    console.log('request.body', request.body)
+    User.update(request.body, { where: { id: request.params.id } }).then((result) => res.send(result))
+})
+
+app.delete('/v1/user/:id', (request, res) => {
+    console.log('request.url', request.url) // debug
+    User.destroy({ where: { id: request.params.id } }).then((result) => res.send(result))
 })
 
 app.listen(port, () => {
