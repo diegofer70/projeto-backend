@@ -1,5 +1,6 @@
-const express = require('express')
-const app = express()
+const app = require('./app-express.js')
+
+const { User } = require('../models/models.js');
 
 app.get('/', (req, res) => {
     res.send('Olá, mundo')
@@ -19,7 +20,6 @@ app.post('/v1/user', (request, res) => {
 
     User.create(request.body).then((result) => res.status(201).send(result))
 })
-
 
 app.put('/v1/user/:id', (request, res) => {
     console.log('request.url', request.url) // debug
