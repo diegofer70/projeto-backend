@@ -1,3 +1,4 @@
+const { Category } = require('../models/models.js')
 const app = require('./app-express.js')
 
 app.get('/v1/category/:id', (request, res) => {
