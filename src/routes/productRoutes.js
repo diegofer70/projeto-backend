@@ -22,11 +22,15 @@ app.get('/v1/product/:id', (request, res) => {
         .then((result) => res.send(result))
 })
 
-app.post('/v1/product', (request, res) => {
+app.post('/v1/product', async (request, res) => {
     console.log('request.url', request.url) // debug
     console.log('request.body', request.body)
 
-    Product.create(request.body).then((result) => res.status(201).send(result))
+    const result = await Product.create(request.body)
+    await result.addCategories(request.body.category_ids);
+    res.status(201).send(result)
+
+    
 })
 
 app.put('/v1/product/:id', (request, res) => {
