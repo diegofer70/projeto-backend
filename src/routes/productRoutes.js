@@ -6,12 +6,12 @@ app.get('/', (req, res) => {
     res.send('Olá, mundo')
 })
 
-app.get('/v1/product/search', (request, res) => {
+app.get('/v1/product/search', async (request, res) => {
     console.log(req.query)
     const produtos = await Product.findAll({limit: 30});
 
     Product.findAll({ where: { id: request.params.id } })
-    res.send(produtos))
+    res.send(produtos)
 })
 
 app.get('/v1/product/:id', (request, res) => {
