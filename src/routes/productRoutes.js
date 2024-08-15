@@ -6,11 +6,12 @@ app.get('/', (req, res) => {
     res.send('Olá, mundo')
 })
 
-app.get('/v1/product/search', async (request, res) => {
+app.get('/v1/product/search', async (req, res) => {
     console.log(req.query)
+
     const produtos = await Product.findAll({limit: 30});
 
-    Product.findAll({ where: { id: request.params.id } })
+    Product.findAll({where: {id: req.params.id}})
     res.send(produtos)
 })
 
@@ -22,16 +23,21 @@ app.get('/v1/product/:id', (request, res) => {
         .then((result) => res.send(result))
 })
 
-app.post('/v1/product', async (request, res) => {
+app.get('/v1/product/', (request, res) => {
+    console.log('request.url', request.url) // debug
+
+
+    Product.findAll()
+        .then((result) => res.send(result))
+})
+
+app.post('/v1/product', (request, res) => {
     console.log('request.url', request.url) // debug
     console.log('request.body', request.body)
 
-    const result = await Product.create(request.body)
-    await result.addCategories(request.body.category_ids);
-    res.status(201).send(result)
-
-    
+    Product.create(request.body).then((result) => res.status(201).send(result))
 })
+
 
 app.put('/v1/product/:id', (request, res) => {
     console.log('request.url', request.url) // debug
@@ -42,6 +48,6 @@ app.put('/v1/product/:id', (request, res) => {
 app.delete('/v1/product/:id', (request, res) => {
     console.log('request.url', request.url) // debug
     Product.destroy({ where: { id: request.params.id } }).then((result) => {
-        res.send('deletei com sucesso essa quantidade de linhas: '+result)
+        res.send('deletei com sucesso essa quantidade de linhas: ' + result)
     })
 })

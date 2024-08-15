@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes, QueryTypes } = require('sequelize');
-const sequelize = new Sequelize('postgresql://postgres.yhogvuqcegpuxhumgkyn:chuchu-banco-vai-dar-bom@aws-0-us-west-1.pooler.supabase.com:6543/postgres');
+const sequelize = new Sequelize('postgresql://postgres.hspsjnkdtvcaiuxplsov:chuchu-diego-araujo@aws-0-us-west-1.pooler.supabase.com:6543/postgres')
+// const sequelize = new Sequelize('postgresql://postgres.yhogvuqcegpuxhumgkyn:chuchu-banco-vai-dar-bom@aws-0-us-west-1.pooler.supabase.com:6543/postgres');
 
 const User = sequelize.define(
     'User',
