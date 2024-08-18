@@ -1,5 +1,3 @@
-const {USUARIO, SENHA,HOST, PORTA_BANCO, BANCO} = process.env
-
 module.exports = {
-  uri: 'postgresql://'+USUARIO+':'+SENHA+'@'+HOST+':'+PORTA_BANCO+'/'+BANCO
+  uri: 'postgresql://postgres.hspsjnkdtvcaiuxplsov:chuchu-diego-araujo@aws-0-us-west-1.pooler.supabase.com:6543/postgres' // configure o seu banco
 }
