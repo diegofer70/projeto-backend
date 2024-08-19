@@ -7,11 +7,11 @@ app.get("/", (req, res) => {
 });
 
 // cRud - READ
-app.get("/v1/product/search", async (request, res) => {
+app.get("/v1/product/search", async (req, res) => {
   console.log(req.query);
   const produtos = await Product.findAll({ limit: 30 });
 
-  Product.findAll({ where: { id: request.params.id } });
+  Product.findAll({ where: { id: req.params.id } });
   res.send(produtos);
 });
 
